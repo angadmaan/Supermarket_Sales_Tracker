@@ -77,12 +77,11 @@ supermarket-sales-tracker/
 ├── supermarket_gui.py
 ├── README.md
 ├── .gitignore
-├── LICENSE
 ├── assets/
-│   ├── myicon.ico
-│   └── supermarket-sales-tracker-linkedin.png
+│   ├── icon.ico
+│   └── supermarket-sales-tracker.png
 ├── docs/
-│   └── Supermarket_Sales_Tracker_Presentation.pptx
+│   └── Supermarket_Sales_Tracker.pptx
 └── packaging/
     └── supermarket_gui.spec
 ```
