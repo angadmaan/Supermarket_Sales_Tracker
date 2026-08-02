@@ -104,6 +104,6 @@ supermarket-sales-tracker/
 ## 👤 Author
 
 **Angad Singh Maan**  
-B.Tech CSE | Cybersecurity | Linux | Networking
+B.Tech CSE | Cybersecurity | Linux | Networking | DevSecOps
 
 [LinkedIn](https://linkedin.com/in/angad-singh-maan) · [GitHub](https://github.com/angadmaan)
