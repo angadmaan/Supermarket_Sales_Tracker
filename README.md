@@ -66,7 +66,7 @@ python3 supermarket_gui.py
 
 ## 📸 Preview
 
-![Supermarket Sales Tracker](assets/supermarket-sales-tracker-linkedin.png)
+![Supermarket Sales Tracker](assets/supermarket-sales-tracker.png)
 
 ---
 
