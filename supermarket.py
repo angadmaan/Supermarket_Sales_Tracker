@@ -35,6 +35,8 @@ def add_to_cart():
     else:
         messagebox.showwarning("Warning", "Please select item and valid quantity.")
 
+# For Bill Generation
+
 def generate_bill():
     if not cart:
         messagebox.showerror("Empty Cart", "Cart is empty!")
@@ -85,3 +87,4 @@ tk.Button(root, text="Generate Bill", command=generate_bill).pack(pady=5)
 tk.Button(root, text="Exit", command=root.quit).pack(pady=5)
 
 root.mainloop()
+
