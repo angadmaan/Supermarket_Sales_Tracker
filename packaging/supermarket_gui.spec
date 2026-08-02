@@ -1,5 +1,6 @@
 # -*- mode: python ; coding: utf-8 -*-
 
+# Just ignore if you don't know what this is 
 
 a = Analysis(
     ['supermarket_gui.py'],
