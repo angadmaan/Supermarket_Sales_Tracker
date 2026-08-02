@@ -60,7 +60,7 @@ cd supermarket-sales-tracker
 python3 supermarket_gui.py
 ```
 
-> No external Python packages are required to run the main application.
+> No external Python packages are required to run the main application except tkinter.
 
 ---
 
