@@ -84,8 +84,8 @@ This will start a local server and open the website at `http://localhost:8000` i
 ## 📁 Project Structure
 
 ```text
-supermarket-sales-tracker/
-├── supermarket_gui.py
+Supermarket_Sales_Tracker/
+├── supermarket.py
 ├── README.md
 ├── .gitignore
 ├── assets/
@@ -93,8 +93,13 @@ supermarket-sales-tracker/
 │   └── supermarket-sales-tracker.png
 ├── docs/
 │   └── Supermarket_Sales_Tracker.pptx
-└── packaging/
-    └── supermarket_gui.spec
+├── packaging/
+│   └── supermarket_gui.spec
+└── website/
+    ├── index.html
+    ├── style.css
+    ├── app.js
+    └── serve.py
 ```
 
 ---
