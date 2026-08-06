@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Supermarket Sales Tracker — A Python desktop application for managing inventory, shopping cart, and billing. Built with Tkinter by Angad Singh Maan.">
+  <title>Supermarket Sales Tracker | Python Project by Angad Singh Maan</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◆</text></svg>">
+</head>
+<body>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Bill Overlay Modal -->
+  <div class="demo-bill-overlay" id="billOverlay">
+    <div class="demo-bill-modal">
+      <div class="demo-bill-header">
+        <div class="demo-bill-icon">⊞</div>
+        <h3 class="demo-bill-title">Supermarket Bill</h3>
+        <p class="demo-bill-date" id="billDate"></p>
+      </div>
+      <div class="demo-bill-items" id="billItems"></div>
+      <div class="demo-bill-total-row">
+        <span class="demo-bill-total-label">Total Amount</span>
+        <span class="demo-bill-total-amount" id="billTotal"></span>
+      </div>
+      <button class="demo-bill-close" id="billClose" onclick="closeBill()">Done</button>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="nav-brand">
+        <div class="nav-brand-icon">S</div>
+        <span>Sales Tracker</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#tech">Tech Stack</a></li>
+        <li><a href="#demo">Demo</a></li>
+        <li><a href="#author">Author</a></li>
+        <li><a href="https://github.com/angadmaan/Supermarket_Sales_Tracker" target="_blank" class="nav-cta">Source →</a></li>
+      </ul>
+      <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-grid"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Python · Tkinter · Desktop App
+        </div>
+        <h1>
+          Supermarket<br>
+          <span class="gradient-text">Sales Tracker</span>
+        </h1>
+        <p class="hero-description">
+          A desktop-based supermarket billing and inventory management application. Manage product stock, add items to a cart, validate quantities, generate bills, and keep a sales record — all through a clean graphical interface.
+        </p>
+        <div class="hero-actions">
+          <a href="#demo" class="btn btn-primary">Try Live Demo</a>
+          <a href="https://github.com/angadmaan/Supermarket_Sales_Tracker" target="_blank" class="btn btn-secondary">View Source →</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div class="hero-stat-number">10</div>
+            <div class="hero-stat-label">Products</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">7</div>
+            <div class="hero-stat-label">Features</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">0</div>
+            <div class="hero-stat-label">Dependencies</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-float-card hero-float-card-1">
+          <div class="float-card-row">
+            <div class="float-card-icon float-card-icon-green">✓</div>
+            <div>
+              <div class="float-card-text">Stock Validated</div>
+              <div class="float-card-sub">All items in stock</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-float-card hero-float-card-2">
+          <div class="float-card-row">
+            <div class="float-card-icon float-card-icon-blue">⊞</div>
+            <div>
+              <div class="float-card-text">Bill Generated</div>
+              <div class="float-card-sub">Total: ₹610.00</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-mockup">
+          <div class="hero-mockup-window">
+            <div class="mockup-titlebar">
+              <div class="mockup-dot mockup-dot-red"></div>
+              <div class="mockup-dot mockup-dot-yellow"></div>
+              <div class="mockup-dot mockup-dot-green"></div>
+              <span class="mockup-titlebar-text">supermarket.py</span>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-code-line">
+                <span class="mockup-line-num">1</span>
+                <span><span class="mockup-keyword">import</span> <span class="mockup-variable">tkinter</span> <span class="mockup-keyword">as</span> <span class="mockup-variable">tk</span></span>
+              </div>
+              <div class="mockup-code-line">
+                <span class="mockup-line-num">2</span>
+                <span><span class="mockup-keyword">from</span> <span class="mockup-variable">tkinter</span> <span class="mockup-keyword">import</span> <span class="mockup-variable">messagebox, ttk</span></span>
+              </div>
+              <div class="mockup-code-line">
+                <span class="mockup-line-num">3</span>
+                <span></span>
+              </div>
+              <div class="mockup-code-line">
+                <span class="mockup-line-num">4</span>
+                <span><span class="mockup-variable">inventory</span> <span class="mockup-operator">=</span> <span class="mockup-bracket">{</span></span>
+              </div>
+              <div class="mockup-code-line">
+                <span class="mockup-line-num">5</span>
+                <span>&nbsp;&nbsp;<span class="mockup-string">"Apple"</span>: <span class="mockup-bracket">{</span><span class="mockup-string">"price"</span>: <span class="mockup-number">10</span>, <span class="mockup-string">"stock"</span>: <span class="mockup-number">50</span><span class="mockup-bracket">}</span>,</span>
+              </div>
+              <div class="mockup-code-line">
+                <span class="mockup-line-num">6</span>
+                <span>&nbsp;&nbsp;<span class="mockup-string">"Milk"</span>: <span class="mockup-bracket">{</span><span class="mockup-string">"price"</span>: <span class="mockup-number">30</span>, <span class="mockup-string">"stock"</span>: <span class="mockup-number">20</span><span class="mockup-bracket">}</span>,</span>
+              </div>
+              <div class="mockup-code-line">
+                <span class="mockup-line-num">7</span>
+                <span>&nbsp;&nbsp;<span class="mockup-string">"Bread"</span>: <span class="mockup-bracket">{</span><span class="mockup-string">"price"</span>: <span class="mockup-number">25</span>, <span class="mockup-string">"stock"</span>: <span class="mockup-number">15</span><span class="mockup-bracket">}</span>,</span>
+              </div>
+              <div class="mockup-code-line">
+                <span class="mockup-line-num">8</span>
+                <span>&nbsp;&nbsp;<span class="mockup-comment"># ... 7 more products</span></span>
+              </div>
+              <div class="mockup-code-line">
+                <span class="mockup-line-num">9</span>
+                <span><span class="mockup-bracket">}</span></span>
+              </div>
+              <div class="mockup-code-line">
+                <span class="mockup-line-num">10</span>
+                <span></span>
+              </div>
+              <div class="mockup-code-line">
+                <span class="mockup-line-num">11</span>
+                <span><span class="mockup-keyword">def</span> <span class="mockup-function">add_to_cart</span><span class="mockup-bracket">()</span>:</span>
+              </div>
+              <div class="mockup-code-line">
+                <span class="mockup-line-num">12</span>
+                <span>&nbsp;&nbsp;<span class="mockup-variable">item</span> <span class="mockup-operator">=</span> <span class="mockup-variable">item_var</span>.<span class="mockup-function">get</span><span class="mockup-bracket">()</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="container">
+      <span class="section-label">Capabilities</span>
+      <h2 class="section-title">What It Does</h2>
+      <p class="section-subtitle" style="margin: 0 auto;">A complete supermarket management solution with inventory tracking, cart management, and bill generation.</p>
+
+      <div class="features-grid">
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon feature-icon-blue">⊟</div>
+          <h3 class="feature-title">Inventory Viewer</h3>
+          <p class="feature-description">Displays all products with prices, units, and stock levels in an organized view.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon feature-icon-green">+</div>
+          <h3 class="feature-title">Add to Cart</h3>
+          <p class="feature-description">Select products, enter quantities, and add them to a shopping cart in one click.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon feature-icon-rose">✓</div>
+          <h3 class="feature-title">Stock Validation</h3>
+          <p class="feature-description">Prevents ordering beyond available stock with clear feedback messages.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon feature-icon-purple">↻</div>
+          <h3 class="feature-title">Live Stock Updates</h3>
+          <p class="feature-description">Inventory levels update in real-time as products are added to the cart.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon feature-icon-amber">⊞</div>
+          <h3 class="feature-title">Bill Generation</h3>
+          <p class="feature-description">Creates a timestamped bill with product details, quantities, and total amount.</p>
+        </div>
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon feature-icon-blue">≡</div>
+          <h3 class="feature-title">Sales History</h3>
+          <p class="feature-description">Every transaction is logged to a persistent file for future reference.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="tech-stack" id="tech">
+    <div class="container">
+      <span class="section-label">Built With</span>
+      <h2 class="section-title">Tech Stack</h2>
+      <p class="section-subtitle" style="margin: 0 auto;">Built entirely with Python's standard library — zero external dependencies.</p>
+
+      <div class="tech-grid">
+        <div class="tech-card animate-on-scroll">
+          <div class="tech-card-icon">⬡</div>
+          <div class="tech-card-name">Python 3</div>
+          <div class="tech-card-desc">Core Language</div>
+        </div>
+        <div class="tech-card animate-on-scroll">
+          <div class="tech-card-icon">◻</div>
+          <div class="tech-card-name">Tkinter</div>
+          <div class="tech-card-desc">GUI Framework</div>
+        </div>
+        <div class="tech-card animate-on-scroll">
+          <div class="tech-card-icon">◷</div>
+          <div class="tech-card-name">datetime</div>
+          <div class="tech-card-desc">Timestamps</div>
+        </div>
+        <div class="tech-card animate-on-scroll">
+          <div class="tech-card-icon">▤</div>
+          <div class="tech-card-name">File I/O</div>
+          <div class="tech-card-desc">Bills & Logs</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Live Demo -->
+  <section class="demo" id="demo">
+    <div class="container">
+      <span class="section-label">Interactive</span>
+      <h2 class="section-title">Try It Live</h2>
+      <p class="section-subtitle" style="margin: 0 auto;">A working recreation of the Tkinter app. Browse inventory, add items to cart, and generate bills — right here.</p>
+
+      <div class="demo-app">
+        <div class="demo-titlebar">
+          <div class="demo-titlebar-dots">
+            <div class="mockup-dot mockup-dot-red"></div>
+            <div class="mockup-dot mockup-dot-yellow"></div>
+            <div class="mockup-dot mockup-dot-green"></div>
+          </div>
+          <span class="demo-titlebar-text">Supermarket Sales Tracker — Live Demo</span>
+        </div>
+
+        <div class="demo-body">
+          <!-- Left: Add Item -->
+          <div class="demo-panel">
+            <h3 class="demo-panel-title"><span>›</span> Add Item</h3>
+
+            <div class="demo-form-group">
+              <label class="demo-form-label" for="itemSelect">Product</label>
+              <select class="demo-select" id="itemSelect">
+                <option value="">— Select a product —</option>
+              </select>
+            </div>
+
+            <div class="demo-item-info" id="itemInfo">
+              <div class="demo-item-info-row">
+                <span class="demo-item-info-label">Price</span>
+                <span class="demo-item-info-value" id="infoPrice">—</span>
+              </div>
+              <div class="demo-item-info-row">
+                <span class="demo-item-info-label">Unit</span>
+                <span class="demo-item-info-value" id="infoUnit">—</span>
+              </div>
+              <div class="demo-item-info-row">
+                <span class="demo-item-info-label">In Stock</span>
+                <span class="demo-item-info-value" id="infoStock">—</span>
+              </div>
+            </div>
+
+            <div class="demo-form-group" style="margin-top: 16px;">
+              <label class="demo-form-label" for="quantityInput">Quantity</label>
+              <input class="demo-input" type="number" id="quantityInput" placeholder="Enter quantity" min="1">
+            </div>
+
+            <div class="demo-btn-group">
+              <button class="demo-btn demo-btn-add" id="addToCartBtn" onclick="addToCart()">Add to Cart</button>
+              <button class="demo-btn demo-btn-bill" id="generateBillBtn" onclick="generateBill()">Generate Bill</button>
+              <button class="demo-btn demo-btn-clear" id="clearCartBtn" onclick="clearCart()">Clear Cart</button>
+            </div>
+          </div>
+
+          <!-- Middle: Inventory -->
+          <div class="demo-panel">
+            <h3 class="demo-panel-title"><span>›</span> Inventory</h3>
+            <table class="demo-table">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Price (₹)</th>
+                  <th>Unit</th>
+                  <th>Stock</th>
+                </tr>
+              </thead>
+              <tbody id="inventoryTable"></tbody>
+            </table>
+          </div>
+
+          <!-- Right: Cart -->
+          <div class="demo-panel">
+            <h3 class="demo-panel-title"><span>›</span> Cart</h3>
+            <div id="cartContainer">
+              <div class="demo-cart-empty" id="cartEmpty">
+                <div class="demo-cart-empty-icon">∅</div>
+                <div class="demo-cart-empty-text">Cart is empty.<br>Add items to get started.</div>
+              </div>
+              <div class="demo-cart-items" id="cartItems"></div>
+              <div class="demo-cart-total" id="cartTotal" style="display: none;">
+                <span class="demo-cart-total-label">Total</span>
+                <span class="demo-cart-total-amount" id="cartTotalAmount">₹0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Author -->
+  <section class="author" id="author">
+    <div class="container">
+      <span class="section-label">Creator</span>
+      <h2 class="section-title">About the Author</h2>
+
+      <div class="author-card animate-on-scroll">
+        <div class="author-avatar">A</div>
+        <h3 class="author-name">Angad Singh Maan</h3>
+        <p class="author-title">B.Tech CSE · Cybersecurity · Linux · Networking · DevSecOps</p>
+        <div class="author-links">
+          <a href="https://linkedin.com/in/angad-singh-maan" target="_blank" class="author-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/angadmaan" target="_blank" class="author-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">
+        Built by <a href="https://github.com/angadmaan" target="_blank">Angad Singh Maan</a> · Supermarket Sales Tracker
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

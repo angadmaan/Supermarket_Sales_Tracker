@@ -51,16 +51,27 @@ Supermarket Sales Tracker helps manage basic supermarket sales operations by all
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/angadmaan/supermarket-sales-tracker.git
+git clone https://github.com/angadmaan/Supermarket_Sales_Tracker.git
 
 # 2. Open the project folder
-cd supermarket-sales-tracker
+cd Supermarket_Sales_Tracker
 
 # 3. Run the application
-python3 supermarket_gui.py
+python3 supermarket.py
 ```
 
 > No external Python packages are required to run the main application except tkinter.
+
+### 🌐 Run the Showcase Website
+
+A local portfolio-style webpage with an interactive demo of the app is included in the `website/` folder.
+
+```bash
+# From the project root
+python3 website/serve.py
+```
+
+This will start a local server and open the website at `http://localhost:8000` in your browser automatically.
 
 ---
 
